@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+  ul {
+    list-style: none
+  }
+  button {
+    font-size: 1.4rem;
+  }
+  .A, .B, .C {
+    display: none;
+    width: 100vw;
+    text-align: center;
+    font-size: 2rem;
+  }
+  .A {
+    background-color: #B33;
+    color: #DDD;
+  }
+  .B {
+    background-color: #3B3;
+  }
+  .C {
+    background-color: #33B;
+    color: #DDD;
+  }
+  .selected {
+    display: block;
+  }
+  </style>
+</head>
+<body>
+  <ul>
+    <li><button data-val="A">Menu A</button></li>
+    <li><button data-val="B">Menu B</button></li>
+    <li><button data-val="C">Menu C</button></li>
+  </ul>
+  <div class="A selected">
+    A
+  </div>
+  <div class="B">
+    B
+  </div>
+  <div class="C">
+    C
+  </div>
+  <script>
+    const btns = document.querySelectorAll('button')
+
+    btns.forEach(btn => {
+      btn.onclick = function() { handleSelect(btn) }
+    })
+
+    function handleSelect(btn) {
+      const className = btn.dataset.val
+      const el = document.getElementsByClassName(className)[0]
+      removeSelectedClass()
+      el.classList.toggle('selected')
+    }
+
+    function removeSelectedClass() {
+      const els = document.getElementsByClassName('selected')
+      Array.from(els).forEach(el => el.classList.remove('selected'))
+    }
+  </script>
+</body>
+</html>
